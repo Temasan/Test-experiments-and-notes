@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.14)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+project(test1)
+FIND_PACKAGE(OpenThreads)
+FIND_PACKAGE(osg)
+FIND_PACKAGE(osgDB)
+FIND_PACKAGE(osgUtil)
+FIND_PACKAGE(osgGA)
+FIND_PACKAGE(osgViewer)
+INCLUDE_DIRECTORIES(${OPENTHREADS_INCLUDE_DIR} ${OSG_INCLUDE_DIR})
+
+LINK_DIRECTORIES(${OSG_LIB_DIR})
+
+add_executable(test1 main.cpp ExampleClasses/Example1/Example1.cpp ExampleClasses/Example1/Example1.h ExampleClasses/Example2/Exapmle2OSG.cpp ExampleClasses/Example2/Exapmle2OSG.h)
+target_link_libraries(test1 ${OSG_LIBRARIES} ${OSGVIEWER_LIBRARIES} ${OSGUTIL_LIBRARIES} ${OSGDB_LIBRARIES} ${OSGGA_LIBRARIES} ${OPENTHREADS_LIBRARIES})
